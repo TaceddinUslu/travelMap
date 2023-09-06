@@ -1,0 +1,22 @@
+
+  {% extends "base.html" %}
+  {% block content %} 
+  {% include 'travelmap/partials/_navbar.html' %}
+
+  <div id="map" style="width: 100%; height: calc(100vh);"></div>
+
+  <script>
+    // Haritayı oluşturun
+    var mapContainer = L.map('map').setView([38.734438, 33.324085], 6);
+
+    // Tile layer ekleyin
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 15,
+      minZoom: 3,
+    }).addTo(mapContainer);
+
+    // Markers verisini çekip işaretçileri oluşturun
+    var marker = L.marker([39.9334, 32.8597]).addTo(mapContainer);
+    marker.bindPopup('<a href="/blog"> marker </a>').openPopup();
+  </script>
+  {% endblock %}
